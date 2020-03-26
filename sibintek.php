@@ -97,7 +97,8 @@ class sibintek
                             echo '</br>'.$i.' интервал ['.$this->startInterval.','.$this->endInterval.']';
                             echo ' пересекается с '.$j.' интервалом ['.$this->array[$j][0].','.$this->array[$j][1].']';
                             echo ' их сумма равна '.$interval;
-                            break;
+                            
+                            continue 2;
                     }
                 }
             }
