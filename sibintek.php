@@ -18,6 +18,7 @@ class sibintek
     private $endInterval;
     private $summInterval;
     private $flagInterval;
+    private $continueInterval;
     /**
      * sibintek constructor.
      *
@@ -30,6 +31,7 @@ class sibintek
     {
         $this->start = microtime(true);
         $this->countArray = rand(2,6);
+        $this->continueInterval = NULL;
         echo 'Количество интервалов в массиве : '.$this->countArray.'</br></br>';
     }
 
@@ -92,12 +94,13 @@ class sibintek
                         ($this->array[$j][1] <= $this->endInterval)) {
                             $this->flagInterval = true;
                             $interval = max($this->array[$j][1], $this->endInterval) - min($this->startInterval, $this->array[$j][0]);
-                            $this->summInterval += $interval;
+                            $this->summInterval += $interval - ($this->array[$j][1] - $this->array[$j][0]);
+                            $this->continueInterval = $j;
 
                             echo '</br>'.$i.' интервал ['.$this->startInterval.','.$this->endInterval.']';
                             echo ' пересекается с '.$j.' интервалом ['.$this->array[$j][0].','.$this->array[$j][1].']';
                             echo ' их сумма равна '.$interval;
-                            
+
                             continue 2;
                     }
                 }
